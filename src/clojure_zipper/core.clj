@@ -29,12 +29,10 @@
 ;;;arguments are:
 ;;;- path to manifest file
 ;;;- storage path, i.e. root path from which the content paths are given
-;(defn -main
-;  [& args]
-;  (let [[manifest-path storage-path] args]
-;    (zip manifest-path storage-path)))
-    ;(zip "/Users/hding2/repos/medusa-downloader/tmp/dev_storage/ea/18/f8/ea18f8a780611c5cacd313cbc24e968cc020fa87ac3fed20/manifest.txt"
-     ;    "/Users/hding2/repos/medusa-downloader/tmp/dev_storage")))
+(defn -main
+  [& args]
+  (let [[manifest-path storage-path] args]
+    (zip manifest-path storage-path)))
 
 ;;The idea going forward - use clojure aleph and byte-streams library to make this into a TCP server local
 ;;to the downloader server. Accept a spec with the manifest-path, storage-path, and (possibly) manifest-format as a JSON
@@ -53,15 +51,15 @@
 
 
 ;;I think I may need to understand Manifold streams better to get this to work!
-(defn handle-connection [stream info]
-  (try
-    (println "Received Connection: " (str info))
-    (println "Received Data:" (bs/to-string (ms/take! stream)))
-    (catch Exception e (println e))))
+;; (defn handle-connection [stream info]
+;;   (try
+;;     (println "Received Connection: " (str info))
+;;     (println "Received Data:" (bs/to-string (ms/take! stream)))
+;;     (catch Exception e (println e))))
 
-(defn -main [& args]
-  (tcp/start-server handle-connection {:port 19876})
-  (while true (java.lang.Thread/sleep 3600000)))
+;; (defn -main [& args]
+;;   (tcp/start-server handle-connection {:port 19876})
+;;   (while true (java.lang.Thread/sleep 3600000)))
 
 ;;It's worth considering the alternative of using an http server here instead of a tcp server, depending on what
 ;;I can turn up in either category. For an http server just pass the stuff as parameters. But I think they would
