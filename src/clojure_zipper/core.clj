@@ -18,7 +18,6 @@
       (io/copy input-stream zip-stream))))
 
 (defn zip [manifest-path storage-path]
-  (println manifest-path)
   (let [zip-stream (ZipOutputStream. System/out)]
     (.setLevel zip-stream 0)
     (with-open [manifest-reader (io/reader manifest-path)]
