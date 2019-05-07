@@ -3,7 +3,12 @@
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.8.0"]]
+  :dependencies [[org.clojure/clojure "1.8.0"]
+                 [commons-io/commons-io "2.5"]
+                 [byte-streams "0.2.3"]
+                 [cheshire "5.8.0"]
+                 [aleph "0.4.3"]]
   :main ^:skip-aot clojure-zipper.core
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}})
+  :profiles {:uberjar {:aot :all}}
+  :uberjar-name "clojure-zipper.jar")
